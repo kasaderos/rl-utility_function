@@ -48,7 +48,7 @@ def get_X(df, past, h):
 
 def get_y(df, past, h):
     y = df['Close'].to_numpy()
-    y = [y[i+h]/y[i]-1 > 0 for i in range(0, len(y)-h)]
+    y = [(y[i+h-1]/y[i]-1) for i in range(0, len(y)-h)]
     return pd.DataFrame(y[past:])
 
     

@@ -1,5 +1,5 @@
 # horizon prediction
-h = 5
+h = 2
 # requirement past 
 past = 30
 
