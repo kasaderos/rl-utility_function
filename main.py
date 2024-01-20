@@ -28,11 +28,15 @@ plt.figure(figsize=(10, 6))
 
 h = conf.h
 for i in range(len(y) - h):
+    price = y[i]
     future_price = y[i + h]
+    expected_price = y[i] * (1+pred[i])
     if pred[i] > 0.0 and future_price >= y[i]:
         plt.scatter(i, y[i], color='green', marker='o')
+        print('GREEN', pred[i], price, future_price, expected_price)
     elif pred[i] > 0.0 and future_price < y[i]:
         plt.scatter(i, y[i], color='red', marker='o')
+        print('RED  ', pred[i], price, future_price, expected_price)
 
 plt.plot(y)
 plt.savefig('plots/prediction.png')
