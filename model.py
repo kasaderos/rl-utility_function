@@ -4,13 +4,14 @@ from sklearn.metrics import roc_auc_score
 from sklearn.metrics import r2_score
 import pandas as pd
 import config as conf
+import numpy as np
 
 params = {
     'task': 'train', 
     'boosting': 'gbdt',
     'objective': 'regression',
     'num_leaves': 10,
-    'learnnig_rage': 0.05,
+    'learning_rate': 0.05,
     'metric': {'l2','l1'}
 }
 
