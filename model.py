@@ -21,10 +21,16 @@ def train(df):
     print(X.head())
     print(y.head())
 
-    model = LGBMRegressor(random_state=42)
-    model.fit(X, y)
-    model.score(X, y)
-    print(r2_score(y, model.predict(X)))
+    model = None
+    if conf.model == 'linear':
+        model = LinearRegression().fit(X, y)
+        model.fit(X, y)
+        print(model.score(X, y))
+    elif conf.model == 'lightgbm':
+        model = LGBMRegressor(random_state=42)
+        model.fit(X, y)
+        model.score(X, y)
+        print(r2_score(y, model.predict(X)))
 
     return model
 
@@ -41,7 +47,7 @@ def get_X(df, past, h):
 
 def get_y(df, past, h):
     y = df['Close'].to_numpy()
-    y = [y[i+h]/y[i]-1 for i in range(0, len(y)-h)]
+    y = [y[i+h]/y[i]-1 > 0 for i in range(0, len(y)-h)]
     return pd.DataFrame(y[past:])
 
     
