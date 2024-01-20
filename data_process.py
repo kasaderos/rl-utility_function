@@ -90,8 +90,6 @@ def process_data(df: pd.DataFrame) -> pd.DataFrame:
     df['stoch_k'] = stoch_k
     df['stoch_d'] = stoch_d
 
-    df = df.dropna()
-
     return df
 
 
